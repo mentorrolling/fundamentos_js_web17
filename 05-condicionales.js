@@ -81,10 +81,12 @@ ALGORITMO
 
 let montoIngresado = Number(prompt("Ingrese el monto de la compra"));
 let montoConDescuento = 0;
+let descuento = 0;
 
 switch (true) {
   case montoIngresado < 100:
     console.log("Monto menor que 100");
+
     break;
   default:
     console.log("No se como sigue");
