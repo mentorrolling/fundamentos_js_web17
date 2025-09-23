@@ -7,5 +7,8 @@ Serie de prácticas y teorías que abarcan conceptos importantes del lenguaje de
 - Variables y tipos de datos
 - Operadores
 - Strings: métodos y propiedades
+- Objeto Math
+- Condicionales: if, else , else if, switch
+- Bucles: While, Do...While
 
 `Hecho con ❤️ por Pablo Marino`
