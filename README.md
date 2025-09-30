@@ -9,6 +9,8 @@ Serie de prácticas y teorías que abarcan conceptos importantes del lenguaje de
 - Strings: métodos y propiedades
 - Objeto Math
 - Condicionales: if, else , else if, switch
-- Bucles: While, Do...While
+- Bucles: While, Do...While, for
+- Arreglos (arrays)
+- Funciones
 
 `Hecho con ❤️ por Pablo Marino`
