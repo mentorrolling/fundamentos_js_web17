@@ -53,3 +53,22 @@ comision.splice(4, 2, "Josefina", "Ludovica");
 
 let comisionCopia = comision; //❌
 let comisionBackup = comision.slice(0, 5);
+
+//Buscar un elemento
+console.log(comision.indexOf("Ludovica")); //-1 no existe el elemento
+console.log(comision.includes("Rubén"));
+
+// for (let i = 0; i < comision.length; i++) {
+//   console.log(comision[i].includes("os"));
+// }
+
+let posicionEliminar = comision.indexOf("Ludovica");
+if (posicionEliminar != -1) {
+  comision.splice(posicionEliminar, 1, "Lourdes");
+}
+
+//ordenar
+comision.sort();
+comision.reverse();
+
+numeros.sort();
