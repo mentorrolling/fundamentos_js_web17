@@ -56,3 +56,43 @@ console.log(`Hola mi estimado ${capitalizarPalabra("josé")}`);
 //return
 //retorna el resultado de una función
 // Termina el proceso de la función
+
+//SCOPE-----------------------------
+let productos = [
+  "iPhone 16",
+  "Apple Watch Series 10",
+  "MacBook Air (Chip M4)",
+  "iPad Pro (Chip M4)",
+  "AirPods Max",
+];
+
+const getProducts = function () {
+  var productos = [
+    "Microsoft Windows 11",
+    "Microsoft 365",
+    "Consola de videojuegos Xbox Series X",
+    "Línea de computadoras Surface",
+    "Microsoft Azure",
+  ];
+
+  for (let i = 0; i < productos.length; i++) {
+    console.log(`${i + 1} - ${productos[i]}`);
+  }
+
+  getProduct(productos);
+};
+
+function getProduct(array, indice = 0) {
+  console.log(`El producto seleccionado es: ${array[indice]}`);
+}
+
+//funciones de flecha | Arrow function
+
+const capitalizarPalabraArrow = (palabra) =>
+  palabra[0].toUpperCase() + palabra.substring(1).toLowerCase();
+
+const calcularDescuentoArrow = (precio, descuento = 15) =>
+  (precio * (100 - descuento)) / 100;
+
+const generarTicketNew = (nombre = prompt("Ingrese su nombre")) =>
+  nombre.substring(0, 3).toLowerCase() + new Date().getTime();
