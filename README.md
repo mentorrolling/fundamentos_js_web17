@@ -12,5 +12,6 @@ Serie de prácticas y teorías que abarcan conceptos importantes del lenguaje de
 - Bucles: While, Do...While, for
 - Arreglos (arrays)
 - Funciones
+- Callbacks
 
 `Hecho con ❤️ por Pablo Marino`
