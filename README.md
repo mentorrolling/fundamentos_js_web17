@@ -13,5 +13,6 @@ Serie de prácticas y teorías que abarcan conceptos importantes del lenguaje de
 - Arreglos (arrays)
 - Funciones
 - Callbacks
+- DOM
 
 `Hecho con ❤️ por Pablo Marino`
