@@ -59,6 +59,17 @@
       <div class="row">
         <div class="col-12 col-md-8 offset-md-2">
           <h2>Lista de libros</h2>
+          <div class="mb-3 d-flex aling-items-center gap-2">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Título del libro..."
+              id="input-search"
+            />
+            <button class="btn btn-success" onclick="buscarLibros()">
+              <i class="bi bi-search"></i>
+            </button>
+          </div>
           <table class="table table-striped">
             <thead>
               <tr>

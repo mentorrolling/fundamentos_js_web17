@@ -3,7 +3,10 @@ let inputNombre = document.querySelector("#name");
 let inputAutor = document.querySelector("#author");
 let inputAnio = document.querySelector("#year");
 let inputDescripcion = document.querySelector("#description");
+let formulario = document.getElementById("bookForm");
 
+let update = false; //que indica si estamos actualizando o no
+let idUpdate = null; //guardar el id del libro que queremos actualizar
 //Array de objetos
 const listaLibros = [
   {
@@ -50,14 +53,18 @@ const listaLibros = [
 
 getLibros();
 
-function getLibros() {
+function getLibros(array = listaLibros) {
   cuerpoTabla.innerHTML = "";
 
-  listaLibros.forEach((libro) => {
+  array.forEach((libro) => {
     let fila = document.createElement("tr");
     let celdas = `<td>${libro.nombre}</td>
                 <td>${libro.autor}</td>
-                <td>${libro.anio}</td>`;
+                <td>${libro.anio}</td>
+                <td><button class="btn btn-danger btn-sm" onclick="borrarLibro(${libro.id})"><i class="bi bi-x-lg"></i></button>
+                
+                <button class="btn btn-warning btn-sm" onclick="cargarDatos(${libro.id})"><i class="bi bi-pencil-square"></i></button>
+                </td>`;
     fila.innerHTML = celdas;
 
     cuerpoTabla.append(fila);
@@ -78,8 +85,87 @@ const agregarLibro = () => {
   listaLibros.push(datos);
 };
 
-document.getElementById("bookForm").addEventListener("submit", (event) => {
+function borrarLibro(id) {
+  // splice -> indice , 1
+  let index = listaLibros.findIndex((libro) => libro.id === id);
+
+  let validar = confirm(
+    `Está seguro que quiere eliminar el libro ${listaLibros[index].nombre}?`
+  );
+
+  if (validar) {
+    listaLibros.splice(index, 1);
+    getLibros();
+  }
+}
+
+//buscador
+/*
+datos de entrada: título del libro | algunos caracteres (3 mínimo)
+proceso: Recorrer el array y comparar dato de entrada con el título de los libros (cualquier libro que incluya los caracteres)
+salida: lista de libros que coincidan con la búsqueda - array[]
+
+*/
+
+function buscarLibros(termino = document.querySelector("#input-search").value) {
+  if (termino) {
+    let librosFiltrados = listaLibros.filter((libro) =>
+      libro.nombre.toLowerCase().includes(termino.toLowerCase())
+    );
+
+    getLibros(librosFiltrados);
+  } else {
+    getLibros();
+  }
+}
+
+/*
+1 - cargar los datos del libro en el formulario y cambiar el título del botón
+2 - tomar los datos del formulario y actualizar el libro, cargar la tabla y volver a colocar el título al botón original
+*/
+
+function cargarDatos(id) {
+  update = true; //indicamos que estamos por actualizar
+  let datos = listaLibros.find((libro) => libro.id === id); //todo el objeto del libro a actualizar
+
+  inputNombre.value = datos.nombre;
+  inputAnio.value = datos.anio;
+  inputAutor.value = datos.autor;
+  inputDescripcion.value = datos.descripcion;
+
+  idUpdate = id; //aquí guardo el id del libro
+  document.querySelector(".btn-primary").innerText = "Actualizar libro";
+}
+
+function actualizarLibro(id, valores) {
+  let index = listaLibros.findIndex((libro) => libro.id === id);
+
+  listaLibros[index].nombre = valores.nombre;
+  listaLibros[index].autor = valores.autor;
+  listaLibros[index].anio = valores.anio;
+  listaLibros[index].descripcion = valores.descripcion;
+
+  update = false;
+  document.querySelector(".btn-primary").innerText = "Agregar libro";
+}
+
+formulario.addEventListener("submit", (event) => {
   event.preventDefault();
-  agregarLibro();
+
+  if (!update) {
+    agregarLibro();
+  } else {
+    let valores = {
+      nombre: inputNombre.value,
+      autor: inputAutor.value,
+      anio: inputAnio.value,
+      descripcion: inputDescripcion.value,
+    };
+
+    actualizarLibro(idUpdate, valores);
+  }
+
+  formulario.reset();
+  inputNombre.focus();
   getLibros();
 });
